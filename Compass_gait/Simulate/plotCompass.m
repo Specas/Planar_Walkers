@@ -1,7 +1,14 @@
 function ax = plotCompass(ax, q1, q2)
 
 global params
+
+%Clearing axes so that it can be animated
+cla;
+
 hold on;
+
+%Plotting ground as it has already been cleared first
+ax = plotGround(ax);
 
 [~, ~, hip_x, hip_y, ~, ~, swing_x, swing_y] = computePos(q1, q2, params.init_fixed_x, params.init_fixed_y);
 hip_radius = 2; 
