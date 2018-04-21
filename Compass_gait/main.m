@@ -10,7 +10,7 @@ addpath(genpath('Dynamics/'));
 
 %Global parameters
 global params
-params.alpha = deg2rad(20);
+params.alpha = deg2rad(3);
 params.xlim = [0, 250];
 params.ylim = [0, 250];
 params.right_height = 50;
@@ -27,8 +27,8 @@ params.figure_height = params.ylim(2) - params.ylim(1);
 params.init_fixed_y = params.right_height + (params.figure_width - params.init_fixed_x)*tan(params.alpha);
 
 %Initial parameters (Angles and velocities)
-q1_init = deg2rad(-5);
-q2_init = deg2rad(-45);
+q1_init = deg2rad(-2);
+q2_init = deg2rad(-20);
 q1d_init = 0;
 q2d_init = 0;
 
