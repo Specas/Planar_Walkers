@@ -12,4 +12,4 @@ function ax = plotGround(ax)
 global params
 
 hold on;
-plot(ax, [params.xlim(1), params.xlim(2)], [params.left_height, params.right_height], 'g');
+plot(ax, [params.xlim(1), params.xlim(2)], [params.left_height, params.right_height], 'Color', [0.9100    0.4100    0.1700]);

@@ -19,6 +19,10 @@ for i=1:100
     tspan = [0, delta_t];
     [~, x] = ode45(@(t, x) odeFunc(x), tspan, x_curr);
     x_curr = x(end, :).';
+    
+    %Hybrid dynamics
+    x_curr = hybridDynamics(x_curr);
+    
     ax = plotCompass(ax, x_curr(1), x_curr(2));
     
     pause(delta_t*sim_time_multiplier);

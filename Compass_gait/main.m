@@ -18,21 +18,21 @@ params.M = 10;
 params.m = 5;
 params.l = 30;
 params.g = 9.81;
-params.init_fixed_x = 50;
+params.fixed_x = 50;
 
 %Calculated parameters
 params.left_height = params.right_height + (params.xlim(2) - params.xlim(1))*tan(params.alpha);
 params.figure_width = params.xlim(2) - params.xlim(1);
 params.figure_height = params.ylim(2) - params.ylim(1);
-params.init_fixed_y = params.right_height + (params.figure_width - params.init_fixed_x)*tan(params.alpha);
+params.fixed_y = params.right_height + (params.figure_width - params.fixed_x)*tan(params.alpha);
 
 %Initial parameters (Angles and velocities)
 q1_init = deg2rad(-2);
-q2_init = deg2rad(-20);
+q2_init = deg2rad(-10);
 q1d_init = 0;
 q2d_init = 0;
 
-select_q2_automatically = true;
+select_q2_automatically = false;
 if select_q2_automatically
     q2_init = computeQ2(q1_init);
 end
@@ -42,7 +42,7 @@ end
 [fig, ax] = initializeFigure2D('Compass-Gait', 'GridOn', params.xlim, params.ylim);
 
 %Repositioning and rescaling figure
-set(fig, 'Position', [450, 250, 700, 500]);
+set(fig, 'Position', [300, 250, 700, 500]);
 
 %Plotting the ground
 ax = plotGround(ax);
