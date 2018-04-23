@@ -4,7 +4,7 @@ function out = getFeetPosGround(q1, q2)
 
 global params
 
-[~, ~, ~, ~, ~, ~, swing_x, swing_y] = computePos(q1, q2, params.fixed_x, params.fixed_y);
+[~, ~, ~, ~, ~, ~, swing_x, swing_y] = computePos(q1, q2);
 
 pos_struct = {};
 pos_struct.above = 1;
@@ -17,7 +17,7 @@ pos_struct.below = -1;
 ground_height = params.right_height + tan(params.alpha)*(params.figure_width - swing_x);
 
 %Using a small epsilon to reduce false positive below ground returns
-epsilon = 0.01;
+epsilon = 0.001;
 
 if swing_y > ground_height
     out = pos_struct.above;

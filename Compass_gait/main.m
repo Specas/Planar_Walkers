@@ -10,7 +10,7 @@ addpath(genpath('Dynamics/'));
 
 %Global parameters
 global params
-params.alpha = deg2rad(3);
+params.alpha = deg2rad(10);
 params.xlim = [0, 250];
 params.ylim = [0, 250];
 params.right_height = 50;
@@ -19,6 +19,10 @@ params.m = 5;
 params.l = 30;
 params.g = 9.81;
 params.fixed_x = 50;
+
+%logical parameters
+params.leg_crossed = false;
+params.foot_place = false;
 
 %Calculated parameters
 params.left_height = params.right_height + (params.xlim(2) - params.xlim(1))*tan(params.alpha);
@@ -37,20 +41,21 @@ if select_q2_automatically
     q2_init = computeQ2(q1_init);
 end
 
+%Set docked
+set(0,'DefaultFigureWindowStyle','docked')
 
 %Initializing figure
 [fig, ax] = initializeFigure2D('Compass-Gait', 'GridOn', params.xlim, params.ylim);
 
 %Repositioning and rescaling figure
-set(fig, 'Position', [300, 250, 700, 500]);
+% set(fig, 'Position', [300, 250, 700, 500]);
+
 
 %Plotting the ground
 ax = plotGround(ax);
 
 %Plotting initial configuration
 ax = plotCompass(ax, q1_init, q2_init);
-
-% pause;
 
 %Simulating. We can simulate either after computing q2 for foot placed on
 %the ground or by a manual initial value of q2. This can be selected by

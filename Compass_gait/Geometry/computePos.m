@@ -1,7 +1,7 @@
 %Function to compute the positions of mid points of the legs and the hip
 %given the configuration and position of the fixed leg on the ramp
 
-function [fixed_mp_x, fixed_mp_y, hip_x, hip_y, swing_mp_x, swing_mp_y, swing_x, swing_y] = computePos(q1, q2, fixed_x, fixed_y)
+function [fixed_mp_x, fixed_mp_y, hip_x, hip_y, swing_mp_x, swing_mp_y, swing_x, swing_y] = computePos(q1, q2)
 
 global params
 
