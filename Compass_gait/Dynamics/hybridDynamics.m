@@ -12,15 +12,25 @@ pos_struct.below = -1;
 
 out = getFeetPosGround(x(1), x(2));
 
-if out == pos_struct.below && params.leg_crossed
+if out == pos_struct.below && params.leg_crossed && params.swing_stop
     
-    fprintf('Below.\n');
+%     fprintf('Below.\n');
     
     %Compute new velocities
     [M, ~, ~] = computeMCG(x);
     
+    q1 = x(1);
+    q2 = x(2);
+    q1d = x(3);
+    q2d = x(4);
+    
+%     if q1d <= 0.1
+%         disp('Stop.');
+%     end
+    
     %C matrix that contains the basis of the null space 
-    C = [1; 1];
+%     C = [1; 1];
+    C = [1; (params.l*tan(params.alpha)*cos(q2) - params.l*sin(q2))/(params.l*sin(q1) - params.l*tan(params.alpha)*cos(q1))];
     
     qd_pre = x(3:4);
     impulse_mat = eye(2, 2) - inv(M)*C*inv(C.'*inv(M)*C)*C.';
@@ -38,15 +48,13 @@ if out == pos_struct.below && params.leg_crossed
     
     %Switching positions and velocities
     x([1, 2]) = x([2, 1]);
-%     x([3, 4]) = x([4, 3]);
+    x([3, 4]) = x([4, 3]);
     
     %Resetting flags
     params.leg_crossed = false;
     params.foot_place = false;
-    
-
-    
-   
+    params.swing_stop = false;
+     
     
 end
 

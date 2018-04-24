@@ -33,8 +33,12 @@ for i=1:500
 %         disp('Foot place');
     end
     
+    if x_curr(4) <= 0.1
+        params.swing_stop = true;
+    end
+    
     %Check for leg crossing
-    if x_curr(2) > x_curr(1)
+    if x_curr(2) > x_curr(1) + deg2rad(5)
         params.leg_crossed = true;
     end
     
@@ -43,7 +47,7 @@ for i=1:500
     
 %     disp(x_curr);
     
-    pause;
+%     pause;
     
     ax = plotCompass(ax, x_curr(1), x_curr(2));
     
