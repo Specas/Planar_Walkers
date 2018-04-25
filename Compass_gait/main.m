@@ -1,5 +1,4 @@
 %Main file that runs the compass gait simulation
-
 clear; 
 clc;
 
@@ -10,11 +9,11 @@ addpath(genpath('Dynamics/'));
 
 %Global parameters
 global params
-params.alpha = deg2rad(2);
+params.alpha = deg2rad(0.5);
 params.xlim = [0, 250];
 params.ylim = [0, 250];
 params.right_height = 50;
-params.M = 10;
+params.M = 30;
 params.m = 5;
 params.l = 30;
 params.g = 9.81;
@@ -22,8 +21,8 @@ params.fixed_x = 50;
 
 %logical parameters
 params.leg_crossed = false;
-params.foot_place = false;
-params.swing_stop = false;
+params.swing_switch = false;
+params.DEBUG = true;
 
 %Calculated parameters
 params.left_height = params.right_height + (params.xlim(2) - params.xlim(1))*tan(params.alpha);
@@ -32,11 +31,12 @@ params.figure_height = params.ylim(2) - params.ylim(1);
 params.fixed_y = params.right_height + (params.figure_width - params.fixed_x)*tan(params.alpha);
 
 %Initial parameters (Angles and velocities)
-q1_init = deg2rad(-2);
-q2_init = deg2rad(-6);
+q1_init = deg2rad(-3);
+q2_init = deg2rad(-20);
 q1d_init = 0;
 q2d_init = 0;
 
+%Select q2 automatically for the initial position
 select_q2_automatically = false;
 if select_q2_automatically
     q2_init = computeQ2(q1_init);
@@ -48,10 +48,6 @@ set(0,'DefaultFigureWindowStyle','docked')
 %Initializing figure
 [fig, ax] = initializeFigure2D('Compass-Gait', 'GridOn', params.xlim, params.ylim);
 
-%Repositioning and rescaling figure
-% set(fig, 'Position', [300, 250, 700, 500]);
-
-% pause;
 %Plotting the ground
 ax = plotGround(ax);
 

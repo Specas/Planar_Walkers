@@ -12,21 +12,21 @@ pos_struct.below = -1;
 
 out = getFeetPosGround(x(1), x(2));
 
-if out == pos_struct.below && params.leg_crossed && params.swing_stop
+if out == pos_struct.below && params.leg_crossed && params.swing_switch
     
     q1 = x(1);
     q2 = x(2);
     q1d = x(3);
     q2d = x(4);
     
-%     fprintf('Below.\n');
+    if params.DEBUG
+        fprintf('Impact!\n');
+    end
     
     %Compute new velocities
     M = computeImpactM(x(1:2));
    
     %C matrix that contains the basis of the null space 
-%     C = [1; -(params.l*tan(params.alpha)*cos(q2) + params.l*sin(q2))/(params.l*sin(q1) + params.l*tan(params.alpha)*cos(q1))];
-    
     C = [1 0 -params.l*cos(q1) params.l*cos(q2); 0 1 -params.l*sin(q1) params.l*sin(q2)].';
     
     %Augmenting the generalized velocities to incorporate the two extra
@@ -52,17 +52,7 @@ if out == pos_struct.below && params.leg_crossed && params.swing_stop
     %Resetting flags
     params.leg_crossed = false;
     params.foot_place = false;
-    params.swing_stop = false;
+    params.swing_switched = false;
      
     
 end
-
-% if out == pos_struct.above
-% %     disp('Above');
-% elseif out == pos_struct.on
-% %     disp('On');
-% elseif out == pos_struct.below
-%     disp('Below');
-% else
-% %     disp('Uncertain');
-% end
