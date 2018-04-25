@@ -10,7 +10,7 @@ addpath(genpath('Dynamics/'));
 
 %Global parameters
 global params
-params.alpha = deg2rad(1);
+params.alpha = deg2rad(2);
 params.xlim = [0, 250];
 params.ylim = [0, 250];
 params.right_height = 50;
@@ -33,7 +33,7 @@ params.fixed_y = params.right_height + (params.figure_width - params.fixed_x)*ta
 
 %Initial parameters (Angles and velocities)
 q1_init = deg2rad(-2);
-q2_init = deg2rad(-5);
+q2_init = deg2rad(-6);
 q1d_init = 0;
 q2d_init = 0;
 
@@ -51,7 +51,7 @@ set(0,'DefaultFigureWindowStyle','docked')
 %Repositioning and rescaling figure
 % set(fig, 'Position', [300, 250, 700, 500]);
 
-
+% pause;
 %Plotting the ground
 ax = plotGround(ax);
 

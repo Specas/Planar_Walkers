@@ -27,10 +27,11 @@ for i=1:500
     q2_prev = q2_curr;
     q2_curr = x_curr(2);
     
+    %Setting control flags
+    
     %If q2 decreases, then its time for a foot place
     if q2_curr <= q2_prev
         params.foot_place = true;
-%         disp('Foot place');
     end
     
     if x_curr(4) <= 0.1
