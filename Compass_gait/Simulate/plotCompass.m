@@ -1,8 +1,18 @@
+%Function that plots the compass walker using the generalized coordinates.
+
+%INPUT: 
+%ax: Axis of the figure to draw the walker on
+%q1: First generalized coordinate - angle of the fixed leg with respect to
+%the vertical
+%q2: Second generalized coordinate - angle of the swing leg with respect to
+%the vertical
+
+%OUTPUT:
+%ax: Axis of the figure after the compass walker has been drawn
+
 function ax = plotCompass(ax, q1, q2)
 
 global params
-
-DEBUG = false;
 
 %Clearing axes so that it can be animated
 cla;
@@ -27,7 +37,7 @@ plot(ax, [hip_x, swing_x], [hip_y, swing_y], 'b', 'LineWidth', 2);
 plot(ax, hip_x, hip_y, '.', 'MarkerSize', 25, 'Color', [0.1    0.75    0.63]);
 
 %Debugging plots
-if DEBUG
+if params.DEBUG
     
     %Mid points of the legs
     plot(ax, fixed_mp_x, fixed_mp_y, 'c.', 'MarkerSize', 10);

@@ -1,6 +1,9 @@
 %Function to compute the four coordinate Mass matrix at the time of impact.
 %This is required to compute the post impact velocities
 
+%INPUT: Generalized coordinates q1 and q2 in a vector
+%OUTPUT: The 4x4 Mass matrix for the entire augmented generalized
+%coordinates
 function M = computeImpactM(q)
 
 global params

@@ -1,5 +1,12 @@
 %Function to get relative position of feet wrt to the ground (For hybrid
 %gate)
+
+%INPUT:
+%q1, q2: Generalized coordinates. Angles of the fixed and swing legs with
+%the vertical
+%OUTPUT: 1, 0 or -1 depending on whether the toe of the swing leg is above, on or below the
+%ground plane
+
 function out = getFeetPosGround(q1, q2)
 
 global params

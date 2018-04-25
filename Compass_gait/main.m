@@ -19,10 +19,13 @@ params.l = 30;
 params.g = 9.81;
 params.fixed_x = 50;
 
+%Simulation parameters
+params.sim_time_multiplier = 10;
+
 %logical parameters
 params.leg_crossed = false;
 params.swing_switch = false;
-params.DEBUG = true;
+params.DEBUG = false;
 
 %Calculated parameters
 params.left_height = params.right_height + (params.xlim(2) - params.xlim(1))*tan(params.alpha);
@@ -43,7 +46,7 @@ if select_q2_automatically
 end
 
 %Set docked
-set(0,'DefaultFigureWindowStyle','docked')
+set(0, 'DefaultFigureWindowStyle', 'docked')
 
 %Initializing figure
 [fig, ax] = initializeFigure2D('Compass-Gait', 'GridOn', params.xlim, params.ylim);
@@ -59,7 +62,17 @@ ax = plotCompass(ax, q1_init, q2_init);
 %changing the boolean value selection variable above.
 q_init = [q1_init; q2_init; q1d_init; q2d_init];
 
-free_simulate(ax, q_init);
+x_history = free_simulate(ax, q_init);
+
+%We can plot some of the phase plots
+figure(2);
+plot(x_history(:, 1), x_history(:, 3));
+xlabel('q1');
+ylabel('q1 dot');
+figure(3);
+plot(x_history(:, 2), x_history(:, 4));
+xlabel('q2');
+ylabel('q2 dot');
 
 
 

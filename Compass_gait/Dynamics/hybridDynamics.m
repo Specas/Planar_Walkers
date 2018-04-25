@@ -1,6 +1,10 @@
 %Hybrid Dynamics for the compass gait, including all gate switching and
 %transition velocities
 
+%INPUT: State vector
+%OUTPUT: Updated state vector with the new post impact configurations and
+%velocities
+
 function x = hybridDynamics(x)
 
 global params
@@ -10,8 +14,12 @@ pos_struct.above = 1;
 pos_struct.on = 0;
 pos_struct.below = -1;
 
+%Checking if the swing toe is touching or below the ground
 out = getFeetPosGround(x(1), x(2));
 
+%For simulation, the impact is triggered when the swing toe touches the
+%ground, the swing leg is beyond the stance leg and the swing leg velocity
+%has switched signs (After max oscillation)
 if out == pos_struct.below && params.leg_crossed && params.swing_switch
     
     q1 = x(1);
@@ -51,7 +59,6 @@ if out == pos_struct.below && params.leg_crossed && params.swing_switch
     
     %Resetting flags
     params.leg_crossed = false;
-    params.foot_place = false;
     params.swing_switched = false;
      
     

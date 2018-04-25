@@ -1,4 +1,8 @@
-%Function for ode45
+%Function for the ode45 solver. We solve xdot = f(x). This function defines
+%the function f that relates the state vector to its velocity.
+
+%INPUT: State vector x
+%OUTPUT: xdot = f(x) obtained using the Manipulator Equations
 function x_next = odeFunc(x)
 
 %Unrolling

@@ -1,7 +1,16 @@
 %Function to simulate the free dynamcis of the compass gait walker
-function [] = free_simulate(ax, x_init)
+
+%INPUT: 
+%ax: Axis of the figure to draw on.
+%x_init: Initial state vector
+
+%OUTPUT:
+%x_history: Array of all the computed states in the simulation
+function [x_history] = free_simulate(ax, x_init)
 
 global params
+
+x_history = [];
 
 %Unrolling
 q1_init = x_init(1);
@@ -11,8 +20,6 @@ q2d_init = x_init(4);
 
 delta_t = 0.1;
 curr_time = 0;
-
-sim_time_multiplier = 0.5;
 
 x_curr = x_init;
 
@@ -55,15 +62,17 @@ for i=1:350
     %Hybrid dynamics
     x_curr = hybridDynamics(x_curr);
     
+    %Storing the current state values
+    x_history = [x_history; x_curr.'];
+    
     if params.DEBUG
         pause;
     end
     
     ax = plotCompass(ax, x_curr(1), x_curr(2));
     
-    pause(delta_t*sim_time_multiplier);
+    pause(delta_t/params.sim_time_multiplier);
 
-    
     
 end
 
