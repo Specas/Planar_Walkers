@@ -17,10 +17,11 @@ params.M = 30;
 params.m = 5;
 params.l = 30;
 params.g = 9.81;
-params.fixed_x = 50;
+params.fixed_x = 10;
 
 %Simulation parameters
-params.sim_time_multiplier = 10;
+%Controls speed of simulation
+params.sim_time_multiplier = 5;
 
 %logical parameters
 params.leg_crossed = false;
